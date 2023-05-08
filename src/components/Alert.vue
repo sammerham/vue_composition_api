@@ -10,7 +10,8 @@ import {computed } from 'vue';
 export default {
     props:['user'],
     //context can also be passed to ===to this keyword
-    setup (props) {
+    setup (props, context) {
+        // context.emit('eventName', {payload});
         const flag = computed(()=>{
             return props.user.name === 'Tom';
         });
