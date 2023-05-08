@@ -4,6 +4,20 @@ toRefs: converts obj props into separate reactive references watchEffect: allows
 watch depenceies in the componennts 
 computed properties: they are prop that will store cached values, if the depencies inside the func got 
 updated the func will be called again and the prop will be updated by the val retured from the func
+
+
+lifeCycle Hooks
+onBeforeMount, 
+onMounted,
+onbeforeUpdate,
+onUpdated,
+onBeforeUnmount,
+onUnmouted
+onActivated,
+onDeactivated
+
+Note:
+composition Api doesn't suppoted (beforeCreated, created) lifecycleHooks
 */
 
 <template>
@@ -20,14 +34,29 @@ updated the func will be called again and the prop will be updated by the val re
 </template>
 
 <script>
-import { ref, reactive, toRefs, watchEffect, watch, computed } from "vue";
+import { 
+  ref, 
+  reactive, 
+  toRefs, 
+  watchEffect,
+  watch,
+  computed, 
+  onBeforeMount, 
+  onMounted 
+  } from "vue";
 export default {
   name: "App",
   setup() {
+    onBeforeMount(()=>{
+      console.log('beforeMount')
+    });
+    onMounted(()=>{
+      console.log('Mount')
+    });
     let num = ref(0);
     function increment() {
       num.value++;
-    }
+    };
 
     // return reactive reference that can be used in the template
     const double = computed(()=> {
