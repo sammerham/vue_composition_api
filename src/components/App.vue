@@ -24,7 +24,7 @@ lifecycleHooks */
   </div>
 </template>
 
-<script>
+<script setup>
 import {
   ref,
   reactive,
@@ -39,44 +39,45 @@ import AppAlert from "@/components/Alert.vue";
 import { useNumber } from "@/hooks/number";
 import { usePhrase } from "@/hooks/phrase";
 
-export default {
-  name: "App",
-  components: {
-    AppAlert,
-  },
-  setup() {
-    const btn = ref(null);
+// export default {
+// name: "App",
+// components: {
+//   AppAlert,
+// },
+// setup() {
+const btn = ref(null);
 
-    onBeforeMount(() => {
-      console.log("beforeMount");
-    });
-    onMounted(() => {
-      console.log("Mount");
-      btn.value.addEventListener("click", () => {
-        console.log("btn was clicked");
-      });
-    });
+onBeforeMount(() => {
+  console.log("beforeMount");
+});
+onMounted(() => {
+  console.log("Mount");
+  btn.value.addEventListener("click", () => {
+    console.log("btn was clicked");
+  });
+});
 
-    const user = reactive({
-      name: "Tom",
-      age: 30,
-    });
-    setTimeout(() => {
-      user.name = "Hardy";
-    }, 3000);
+const user = reactive({
+  name: "Tom",
+  age: 30,
+});
+setTimeout(() => {
+  user.name = "Hardy";
+}, 3000);
 
-    const { num, increment, double } = useNumber();
-    const { phrase, reversedPhrase } = usePhrase();
-    return {
-      num,
-      increment,
-      ...toRefs(user),
-      phrase,
-      reversedPhrase,
-      double,
-      user,
-      btn,
-    };
-  },
-};
+const { num, increment, double } = useNumber();
+const { phrase, reversedPhrase } = usePhrase();
+const { name } = toRefs(user);
+// return {
+//   num,
+//   increment,
+//   ...toRefs(user),
+//   phrase,
+//   reversedPhrase,
+//   double,
+//   user,
+//   btn,
+// };
+// },
+// };
 </script>
