@@ -30,6 +30,8 @@ composition Api doesn't suppoted (beforeCreated, created) lifecycleHooks
       <input type="text" v-model="phrase" />
     </p>
     <p>{{reversedPhrase}}</p>
+
+    <app-alert :user="user" />
   </div>
 </template>
 
@@ -44,8 +46,12 @@ import {
   onBeforeMount, 
   onMounted 
   } from "vue";
+import AppAlert from '@/components/Alert.vue'
 export default {
   name: "App",
+  components:{
+    AppAlert
+  },
   setup() {
     onBeforeMount(()=>{
       console.log('beforeMount')
@@ -85,6 +91,7 @@ export default {
       phrase,
       reversedPhrase,
       double,
+      user
     };
   },
 };
