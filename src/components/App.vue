@@ -32,6 +32,7 @@ composition Api doesn't suppoted (beforeCreated, created) lifecycleHooks
     <p>{{reversedPhrase}}</p>
 
     <app-alert :user="user" />
+    <button type="button" ref="btn">Button</button>
   </div>
 </template>
 
@@ -53,11 +54,16 @@ export default {
     AppAlert
   },
   setup() {
+    const btn = ref(null);
+    
     onBeforeMount(()=>{
       console.log('beforeMount')
     });
     onMounted(()=>{
       console.log('Mount')
+      btn.value.addEventListener('click', () => {
+          console.log('btn was clicked')
+      });
     });
     let num = ref(0);
     function increment() {
@@ -91,7 +97,8 @@ export default {
       phrase,
       reversedPhrase,
       double,
-      user
+      user,
+      btn
     };
   },
 };
